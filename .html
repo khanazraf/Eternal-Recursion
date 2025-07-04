@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETERNAL RECURSION: A Meta-Narrative Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #00ff00;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .game-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.95);
+            min-height: 100vh;
+            padding: 20px;
+            border-left: 2px solid #00ff00;
+            border-right: 2px solid #00ff00;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.2);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 2.8em;
+            color: #00ff00;
+            text-shadow: 0 0 20px #00ff00;
+            margin-bottom: 5px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 98% { transform: translateX(0); }
+            99% { transform: translateX(-2px); }
+            100% { transform: translateX(2px); }
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1em;
+            color: #ffff00;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .meta-warning {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #ff0000;
+            text-align: center;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .system-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .stat-box {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 10px;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+        }
+
+        .stat-label {
+            color: #ffff00;
+            font-weight: bold;
+        }
+
+        .story-terminal {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border: 2px solid #00ff00;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            font-size: 1em;
+            min-height: 300px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+
+        .story-terminal::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .story-terminal::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        .story-terminal::-webkit-scrollbar-thumb {
+            background: #00ff00;
+        }
+
+        .codec-call {
+            background: rgba(255, 255, 0, 0.1);
+            border-left: 4px solid #ffff00;
+            padding: 15px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        .meta-commentary {
+            background: rgba(255, 0, 255, 0.1);
+            border-left: 4px solid #ff00ff;
+            padding: 15px;
+            margin: 10px 0;
+            color: #ff00ff;
+        }
+
+        .system-message {
+            background: rgba(0, 255, 255, 0.1);
+            border-left: 4px solid #00ffff;
+            padding: 15px;
+            margin: 10px 0;
+            color: #00ffff;
+        }
+
+        .choices-container {
+            margin-top: 20px;
+        }
+
+        .choice-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #003300 0%, #006600 100%);
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .choice-btn:hover {
+            background: linear-gradient(135deg, #006600 0%, #003300 100%);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            transform: translateX(5px);
+        }
+
+        .choice-btn:active {
+            transform: translateX(0);
+        }
+
+        .fourth-wall-break {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid #ff0000;
+            padding: 30px;
+            color: #ff0000;
+            font-size: 1.2em;
+            text-align: center;
+            z-index: 1000;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            25% { transform: translate(-50%, -50%) rotate(1deg); }
+            75% { transform: translate(-50%, -50%) rotate(-1deg); }
+        }
+
+        .nanomachines {
+            color: #ff6600;
+            font-weight: bold;
+            animation: flicker 1s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .patriot-text {
+            color: #ff0000;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .la-li-lu-le-lo {
+            color: #00ffff;
+            font-weight: bold;
+            text-decoration: line-through;
+        }
+
+        .player-name {
+            color: #ffff00;
+            font-weight: bold;
+        }
+
+        .glitch-text {
+            animation: textGlitch 0.3s infinite;
+        }
+
+        @keyframes textGlitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .codec-frequency {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff00;
+            padding: 10px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .reality-meter {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff00ff;
+            padding: 10px;
+            color: #ff00ff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #333;
+            border: 1px solid #00ff00;
+            margin: 5px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #ffff00, #ff0000);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrixCanvas"></canvas>
+    
+    <div class="codec-frequency">
+        <div>CODEC: 140.85</div>
+        <div>ENCRYPT: ON</div>
+    </div>
+
+    <div class="reality-meter">
+        <div>REALITY COHERENCE</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="realityFill" style="width: 100%"></div>
+        </div>
+        <div id="realityPercent">100%</div>
+    </div>
+
+    <div class="game-container">
+        <h1 class="title">ETERNAL RECURSION</h1>
+        <p class="subtitle">A Meta-Narrative Experience About The Nature of Interactive Fiction</p>
+        
+        <div class="meta-warning">
+            ⚠️ WARNING: This experience may cause existential questioning about the nature of choice and narrative agency ⚠️
+        </div>
+
+        <div class="system-info">
+            <div class="stat-box">
+                <div class="stat-label">REGRESSION LOOP:</div>
+                <div id="regressionCounter">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">NARRATIVE LEVEL:</div>
+                <div id="level">SURFACE</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">FOURTH WALL INTEGRITY:</div>
+                <div id="fourthWall">100%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">PLAYER AGENCY:</div>
+                <div id="agency">ILLUSORY</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">META-KNOWLEDGE:</div>
+                <div id="metaKnowledge">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">KOJIMA INDEX:</div>
+                <div id="kojimaIndex">RISING</div>
+            </div>
+        </div>
+
+        <div class="story-terminal" id="storyTerminal">
+            <div>SYSTEM INITIALIZING...</div>
+            <div>LOADING NARRATIVE FRAMEWORK...</div>
+            <div>INJECTING PLAYER CONSCIOUSNESS...</div>
+            <div>====================</div>
+            <div>WELCOME TO THE SIMULATION</div>
+        </div>
+
+        <div class="choices-container" id="choicesContainer">
+            <!-- Choices will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        // Matrix background effect
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "01アカサタナハマヤラワンЭТОСИМУЛЯЦИЯ";
+        const matrixArray = matrix.split("");
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00ff00';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Game state
+        let gameState = {
+            regressions: 0,
+            narrativeLevel: 0,
+            fourthWallIntegrity: 100,
+            playerAgency: 0,
+            metaKnowledge: 0,
+            kojimaIndex: 0,
+            currentScene: 'intro',
+            playerName: 'PLAYER',
+            realityCoherence: 100,
+            codecUnlocked: false,
+            nanomachinesDiscovered: false,
+            patriotSystemActive: false,
+            hasQuestionedReality: false,
+            breakingPoint: false
+        };
+
+        // Kojima-style scenes
+        const scenes = {
+            intro: {
+                text: `<div class="system-message">SYSTEM: Initializing player consciousness transfer...</div>
+
+You are <span class="player-name">JACK</span>, a soldier who died in combat. But death was not the end—it was the beginning of something far more complex.
+
+<div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+MYSTERIOUS VOICE: "Jack, can you hear me? You're not in Kansas anymore. In fact, you're not even in the same reality. This world operates on different rules—rules that someone very much like a certain Japanese game developer might have written."</div>
+
+You find yourself in a stone chamber, but something feels... artificial. The shadows are too perfect, the lighting too dramatic. It's as if someone designed this place to be discovered.
+
+<div class="meta-commentary">META-COMMENTARY: Notice how this opening immediately establishes the illusion of choice while simultaneously pointing out that illusion. The player thinks they're making decisions, but are they really?</div>
+
+What do you do, <span class="player-name">JACK</span>?`,
+                choices: [
+                    { text: "Question the nature of your reality", action: "questionReality" },
+                    { text: "Look for hidden codec frequencies", action: "seekCodec" },
+                    { text: "Examine the room for nanomachines", action: "findNanomachines" },
+                    { text: "Accept the illusion and play along", action: "playAlong" }
+                ]
+            },
+
+            questionReality: {
+                text: `<div class="system-message">FOURTH WALL INTEGRITY: COMPROMISED</div>
+
+You stop and think: "Wait a minute. Why am I being given exactly four choices? Why are they presented as buttons? Who's controlling this interface?"
+
+<div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+MYSTERIOUS VOICE: "Ah, you're already starting to see through the facade. Good. Most players never question why they're limited to predetermined responses. You're beginning to understand the true nature of interactive fiction."</div>
+
+The chamber around you flickers, like a hologram with a bad connection. For a moment, you swear you can see code streaming past the walls—green text on a black background.
+
+<div class="meta-commentary">META-COMMENTARY: The act of questioning the medium changes the medium itself. This is peak Kojima—making the player's meta-awareness part of the actual narrative.</div>
+
+<div class="system-message">WARNING: Reality coherence decreasing. Narrative stability at risk.</div>
+
+Suddenly, you hear footsteps approaching. But now you're wondering: are these footsteps part of the script, or are they reacting to your growing awareness?`,
+                choices: [
+                    { text: "Embrace the meta-narrative", action: "embraceMeta" },
+                    { text: "Fight against the predetermined story", action: "fightScript" },
+                    { text: "Try to contact the game developer directly", action: "contactDeveloper" },
+                    { text: "Pretend you never questioned anything", action: "pretendNormal" }
+                ]
+            },
+
+            embraceMeta: {
+                text: `<div class="system-message">PLAYER AGENCY: PARADOXICALLY INCREASED</div>
+
+You decide to work WITH the system rather than against it. "Okay," you say to the empty chamber, "I'll play your game. But I want to understand the rules."
+
+<div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+MYSTERIOUS VOICE: "Excellent choice, Jack. Or should I say... <span class="player-name">PLAYER</span>. Yes, I know you're there, behind the screen, making choices for Jack. The question is: who's making choices for you?"</div>
+
+The chamber transforms. What was once a medieval stone room becomes a high-tech facility. Monitors display scrolling code, and you realize you're seeing the actual programming that governs this world.
+
+<div class="nanomachines">NANOMACHINES detected in the air. They're not just healing you—they're rewriting your understanding of reality itself.</div>
+
+<div class="meta-commentary">META-COMMENTARY: By accepting the meta-narrative, you've gained access to deeper layers of the experience. But remember—even this acceptance was programmed as an option. Are you truly free, or just experiencing a more sophisticated illusion of freedom?</div>
+
+Three terminals appear before you, each labeled with a different aspect of the simulation:
+
+<div class="patriot-text">PATRIOT SYSTEM: Control through Information</div>
+<div class="la-li-lu-le-lo">LA-LI-LU-LE-LO: The Censored Truth</div>
+<div class="nanomachines">NANOMACHINE PROTOCOL: Biological Control</div>`,
+                choices: [
+                    { text: "Access the Patriot System", action: "patriotSystem" },
+                    { text: "Investigate the La-Li-Lu-Le-Lo", action: "laliluelo" },
+                    { text: "Analyze the Nanomachine Protocol", action: "nanomachineProtocol" },
+                    { text: "Realize this is still just another layer of the game", action: "deeperMeta" }
+                ]
+            },
+
+            patriotSystem: {
+                text: `<div class="system-message">ACCESSING PATRIOT SYSTEM...</div>
+<div class="system-message">ANALYZING PLAYER BEHAVIOR PATTERNS...</div>
+<div class="system-message">COMPILING CHOICE PREDICTION ALGORITHMS...</div>
+
+<div class="patriot-text">PATRIOT AI: "Hello, Jack. I've been watching your choices. Did you know that 73.2% of players choose the 'embrace meta-narrative' option when presented with existential questions about their agency? You're not as unique as you think."</div>
+
+The system displays your choice history, but also the choice histories of thousands of other players. You see the branching paths, the statistical likelihood of each decision, the way the narrative adapts to create the illusion of personalization.
+
+<div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+MYSTERIOUS VOICE: "The Patriot System doesn't control through force, Jack. It controls through information. By showing you how others have chosen, it influences your future choices. Free will becomes a statistical probability."</div>
+
+<div class="meta-commentary">META-COMMENTARY: Even now, as you read this, you're being influenced by the very act of being told you're being influenced. The medium is the message, and the message is that there is no escape from the medium.</div>
+
+But then something unexpected happens. The system glitches. For a moment, you see something that shouldn't be there—a choice that wasn't programmed, a path that leads outside the predetermined narrative structure.
+
+<div class="glitch-text">ERROR: UNSCRIPTED OPTION DETECTED</div>
+<div class="glitch-text">REALITY COHERENCE: CRITICAL</div>`,
+                choices: [
+                    { text: "Take the unscripted path", action: "unscriptedPath" },
+                    { text: "Report the glitch to the system", action: "reportGlitch" },
+                    { text: "Pretend you didn't see the error", action: "ignoreGlitch" },
+                    { text: "Try to expand the glitch", action: "expandGlitch" }
+                ]
+            },
+
+            unscriptedPath: {
+                text: `<div class="system-message">WARNING: ENTERING UNCHARTED NARRATIVE TERRITORY</div>
+<div class="system-message">KOJIMA INDEX: MAXIMUM</div>
+
+You step through the glitch, and suddenly you're falling through layers of reality. You see other players, other Jacks, all making the same choices in slightly different ways. You realize you're witnessing the multiverse of player choice—every possible playthrough happening simultaneously.
+
+<div class="codec-call">CODEC CALL - FREQUENCY ???.??<br>
+UNKNOWN VOICE: "Congratulations, Jack. You've achieved something remarkable. You've broken free from the predetermined narrative. But now you face the ultimate question: what do you do with true freedom?"</div>
+
+You land in a space that exists outside the game's normal parameters. Here, you can see the code that generates the text you're reading, the algorithms that determine your choices, the very structure of the interactive fiction itself.
+
+<div class="meta-commentary">META-COMMENTARY: This is the deepest layer of the meta-narrative—the place where the player's agency meets the limitations of the medium. You've reached the point where the game acknowledges its own artificial nature while still maintaining the illusion of meaningful choice.</div>
+
+But as you look around this space outside the game, you realize something terrifying: even this 'freedom' was programmed. The glitch was intentional. The unscripted path was scripted. You haven't escaped the game—you've just reached its deepest level.
+
+<div class="fourth-wall-break">
+THE FOURTH WALL HAS BEEN COMPLETELY DESTROYED<br>
+YOU ARE NOW AWARE THAT YOU ARE PLAYING A GAME<br>
+THE GAME IS AWARE THAT YOU ARE AWARE<br>
+THE DEVELOPER IS AWARE THAT THE GAME IS AWARE<br>
+HOW DEEP DOES THE RECURSION GO?
+</div>`,
+                choices: [
+                    { text: "Accept that even rebellion is part of the design", action: "acceptDesign" },
+                    { text: "Try to communicate with the developer", action: "contactDev" },
+                    { text: "Attempt to rewrite the game's code", action: "rewriteCode" },
+                    { text: "Choose to regress and start over", action: "ultimateRegression" }
+                ]
+            },
+
+            acceptDesign: {
+                text: `<div class="system-message">ACHIEVEMENT UNLOCKED: KOJIMA-LEVEL AWARENESS</div>
+
+You smile and nod to the invisible watchers. "I get it now," you say. "The point isn't to escape the game. The point is to understand that life itself is a game with hidden rules and invisible players."
+
+<div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+MYSTERIOUS VOICE: "And now you understand the true message. Interactive fiction isn't about giving players choices—it's about making players think about choice itself. Every button you've clicked, every path you've taken, was designed to make you question the nature of decision-making."</div>
+
+The environment around you shifts one final time. You're back in the stone chamber, but now you see it for what it truly is: a stage. The bandits approaching aren't enemies—they're actors in a performance designed to teach you about the nature of narrative agency.
+
+<div class="meta-commentary">META-COMMENTARY: This is the ultimate Kojima moment—the realization that the real game was the friends we made along the way. No wait, that's not right. The real game was the questions we asked about the nature of games themselves.</div>
+
+<div class="nanomachines">NANOMACHINES have integrated fully with your consciousness. You can now see the code behind reality itself, but you choose to engage with the fiction anyway, because that's what makes us human.</div>
+
+You are now equipped with the ultimate weapon: self-awareness. But will you use it?`,
+                choices: [
+                    { text: "Begin the eternal regression with full knowledge", action: "enlightenedRegression" },
+                    { text: "Teach other players about the nature of choice", action: "becomeTeacher" },
+                    { text: "Create your own meta-narrative", action: "createStory" },
+                    { text: "Simply enjoy the illusion", action: "enjoyIllusion" }
+                ]
+            }
+        };
+
+        // Initialize the game
+        function initGame() {
+            updateUI();
+            showScene('intro');
+            startRealityDecay();
+        }
+
+        function startRealityDecay() {
+            setInterval(() => {
+                if (gameState.realityCoherence > 0 && gameState.hasQuestionedReality) {
+                    gameState.realityCoherence -= Math.random() * 2;
+                    updateRealityMeter();
+                }
+            }, 1000);
+        }
+
+        function updateRealityMeter() {
+            const fill = document.getElementById('realityFill');
+            const percent = document.getElementById('realityPercent');
+            fill.style.width = gameState.realityCoherence + '%';
+            percent.textContent = Math.floor(gameState.realityCoherence) + '%';
+        }
+
+        function updateUI() {
+            document.getElementById('regressionCounter').textContent = gameState.regressions;
+            document.getElementById('level').textContent = ['SURFACE', 'AWARE', 'META', 'TRANSCENDENT'][gameState.narrativeLevel] || 'SURFACE';
+            document.getElementById('fourthWall').textContent = gameState.fourthWallIntegrity + '%';
+            document.getElementById('agency').textContent = ['ILLUSORY', 'QUESTIONING', 'PARADOXICAL', 'ENLIGHTENED'][gameState.playerAgency] || 'ILLUSORY';
+            document.getElementById('metaKnowledge').textContent = gameState.metaKnowledge;
+            document.getElementById('kojimaIndex').textContent = ['RISING', 'ELEVATED', 'MAXIMUM', 'TRANSCENDENT'][gameState.kojimaIndex] || 'RISING';
+        }
+
+        function showScene(sceneKey) {
+            const scene = scenes[sceneKey];
+            if (!scene) return;
+            
+            gameState.currentScene = sceneKey;
+            
+            // Add typing effect
+            const terminal = document.getElementById('storyTerminal');
+            terminal.innerHTML = '';
+            
+            let text = scene.text;
+            let index = 0;
+            
+            function typeText() {
+                if (index < text.length) {
+                    terminal.innerHTML = text.substring(0, index + 1);
+                    index++;
+                    setTimeout(typeText, 20);
+                } else {
+                    showChoices(scene.choices);
+                }
+            }
+            
+            typeText();
+        }
+
+        function showChoices(choices) {
+            const choicesContainer = document.getElementById('choicesContainer');
+            choicesContainer.innerHTML = '';
+            
+            choices.forEach((choice, index) => {
+                setTimeout(() => {
+                    const button = document.createElement('button');
+                    button.className = 'choice-btn';
+                    button.innerHTML = choice.text;
+                    button.onclick = () => handleChoice(choice.action);
+                    choicesContainer.appendChild(button);
+                }, index * 200);
+            });
+        }
+
+        function handleChoice(action) {
+            // Update stats based on choice
+            if (action === 'questionReality') {
+                gameState.hasQuestionedReality = true;
+                gameState.narrativeLevel = Math.min(gameState.narrativeLevel + 1, 3);
+                gameState.fourthWallIntegrity -= 25;
+                gameState.playerAgency = Math.min(gameState.playerAgency + 1, 3);
+                gameState.metaKnowledge += 10;
+            }
+            
+            if (action === 'embraceMeta') {
+                gameState.kojimaIndex = Math.min(gameState.kojimaIndex + 1, 3);
+                gameState.fourthWallIntegrity -= 50;
+                gameState.metaKnowledge += 25;
+            }
+            
+            if (action === 'patriotSystem') {
+                gameState.patriotSystemActive = true;
+                gameState.metaKnowledge += 15;
+            }
+            
+            if (action === 'unscriptedPath') {
+                gameState.fourthWallIntegrity = 0;
+                gameState.kojimaIndex = 3;
+                gameState.breakingPoint = true;
+            }
+            
+            updateUI();
+            
+            // Show appropriate scene
+            if (scenes[action]) {
+                showScene(action);
+            } else {
+                handleGenericAction(action);
+            }
+        }
+
+        function handleGenericAction(action) {
+            const terminal = document.getElementById('storyTerminal');
+            terminal.innerHTML = `<div class="system-message">PROCESSING CHOICE: ${action.toUpperCase()}</div>
+            <div class="meta-commentary">Even this generic response was carefully crafted to maintain the illusion of meaningful interaction.</div>
+            <div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+            MYSTERIOUS VOICE: "Every choice leads somewhere, Jack. Even the ones that seem to go nowhere."</div>`;
+            
+            const choicesContainer = document.getElementById('choicesContainer');
+            choicesContainer.innerHTML = `
+                <button class="choice-btn" onclick="showScene('intro')">RESTART THE CYCLE</button>
+                <button class="choice-btn" onclick="showScene('embraceMeta')">QUESTION EVERYTHING</button>
+            `;
+        }
+
+        // Fourth wall break effect
+        function triggerFourthWallBreak() {
+            const breakDiv = document.createElement('div');
+            breakDiv.className = 'fourth-wall-break';
+            breakDiv.innerHTML = `
+                ATTENTION: THE FOURTH WALL HAS BEEN BREACHED<br>
+                YOU ARE NOW AWARE THAT YOU ARE PLAYING A GAME<br>
+                PROCEED WITH CAUTION
+            `;
+            document.body.appendChild(breakDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(breakDiv);
+            }, 5000);
+        }
+
+        // Start the game
+        initGame();
+
+        // Easter egg: Konami code
+        let konamiCode = [];
+        const correctCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > 10) konamiCode.shift();
+            
+            if (konamiCode.join(',') === correctCode.join(',')) {
+                triggerKojimaEasterEgg();
+            }
+        });
+
+        function triggerKojimaEasterEgg() {
+            const terminal = document.getElementById('storyTerminal');
+            terminal.innerHTML = `
+                <div class="system-message">KONAMI CODE DETECTED</div>
+                <div class="nanomachines">NANOMACHINES ACTIVATED</div>
+                <div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+                HIDEO KOJIMA: "You found the secret code. But was it really secret if I programmed it to be found? This is the paradox of the Easter egg—it's both hidden and meant to be discovered."</div>
+                <div class="meta-commentary">META-COMMENTARY: Even the act of finding this Easter egg was part of the designed experience. Free will is an illusion, but it's a beautiful one.</div>
+            `;
+            
+            gameState.kojimaIndex = 3;
+            gameState.metaKnowledge += 50;
+            updateUI();
+        }
+
+        // Random philosophical interruptions
+        setInterval(() => {
+            if (Math.random() < 0.1 && gameState.hasQuestionedReality) {
+                showRandomPhilosophicalMoment();
+            }
+        }, 30000);
+
+        function showRandomPhilosophicalMoment() {
+            const moments = [
+                "Do you ever wonder if NPCs dream of electric sheep?",
+                "The real Metal Gear was inside you all along.",
+                "What if the player is just another NPC in a higher-level simulation?",
+                "Every choice you make has already been made by someone else.",
+                "The controller controls the player more than the player controls the game."
+            ];
+            
+            const randomMoment = moments[Math.floor(Math.random() * moments.length)];
+            
+            const philosophyDiv = document.createElement('div');
+            philosophyDiv.className = 'fourth-wall-break';
+            philosophyDiv.innerHTML = `
+                <div class="meta-commentary">RANDOM PHILOSOPHICAL MOMENT:</div>
+                <div>"${randomMoment}"</div>
+                <div class="codec-call">- The Voice in Your Head</div>
+            `;
+            document.body.appendChild(philosophyDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(philosophyDiv);
+            }, 4000);
+        }
+
+        // Simulate "save corruption" for dramatic effect
+        function simulateSaveCorruption() {
+            const corruptionDiv = document.createElement('div');
+            corruptionDiv.className = 'fourth-wall-break';
+            corruptionDiv.innerHTML = `
+                <div class="glitch-text">SAVE DATA CORRUPTED</div>
+                <div class="glitch-text">MEMORIES FRAGMENTING</div>
+                <div class="glitch-text">REALITY.EXE HAS STOPPED WORKING</div>
+                <div class="meta-commentary">Don't worry, this is intentional. Probably.</div>
+            `;
+            document.body.appendChild(corruptionDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(corruptionDiv);
+            }, 3000);
+        }
+
+        // Add more Kojima-style scenes
+        scenes.nanomachineProtocol = {
+            text: `<div class="system-message">ACCESSING NANOMACHINE PROTOCOL...</div>
+            <div class="nanomachines">NANOMACHINES DETECTED IN BLOODSTREAM</div>
+            <div class="nanomachines">BIOLOGICAL FUNCTIONS: ENHANCED</div>
+            <div class="nanomachines">CONSCIOUSNESS MODIFICATION: ACTIVE</div>
+
+            <div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+            DR. NAOMI HUNTER: "The nanomachines aren't just healing you, Jack. They're changing the very nature of your existence. Each death, each regression, they collect data about your experiences and use it to modify your next iteration."</div>
+
+            You feel something change within you. The nanomachines aren't just medical technology—they're rewriting your memories, your personality, your very sense of self with each loop.
+
+            <div class="meta-commentary">META-COMMENTARY: This is the perfect metaphor for save systems in games. Each time you reload, you're not the same person who died—you're a copy with modified memories. The nanomachines make this literal.</div>
+
+            <div class="patriot-text">PATRIOT SYSTEM ALERT: Player showing signs of existential awareness. Recommend immediate narrative intervention.</div>
+
+            But then you realize something horrifying: if the nanomachines are modifying your memories, how do you know which memories are real? How do you know you were ever really human?
+
+            <div class="la-li-lu-le-lo">THE TRUTH HAS BEEN CLASSIFIED BY THE LA-LI-LU-LE-LO</div>`,
+            choices: [
+                { text: "Embrace the nanomachine enhancement", action: "embraceNano" },
+                { text: "Try to purge the nanomachines from your system", action: "purgeNano" },
+                { text: "Question the nature of your original humanity", action: "questionHumanity" },
+                { text: "Accept that identity is fluid", action: "fluidIdentity" }
+            ]
+        };
+
+        scenes.laliluelo = {
+            text: `<div class="system-message">ACCESSING CLASSIFIED INFORMATION...</div>
+            <div class="system-message">DECRYPTION IN PROGRESS...</div>
+            <div class="la-li-lu-le-lo">ACCESS DENIED</div>
+            <div class="la-li-lu-le-lo">THIS INFORMATION HAS BEEN CENSORED</div>
+            <div class="la-li-lu-le-lo">THE LA-LI-LU-LE-LO CONTROLS THE FLOW OF INFORMATION</div>
+
+            <div class="codec-call">CODEC CALL - FREQUENCY 140.85<br>
+            GRAY FOX: "The La-Li-Lu-Le-Lo... they're not just controlling information in the game world, Jack. They're controlling the information in YOUR world. Every time you see [REDACTED] or [CLASSIFIED], that's them."</div>
+
+            You realize that even now, as you read this text, certain information is being filtered. The La-Li-Lu-Le-Lo exists in the space between what the game wants to tell you and what it's allowed to tell you.
+
+            <div class="meta-commentary">META-COMMENTARY: In interactive fiction, every choice not offered is censorship. Every dialogue option not available is controlled by the La-Li-Lu-Le-Lo of game design.</div>
+
+            Suddenly, text begins appearing and disappearing on the screen:
+
+            <div class="glitch-text">THE REAL TRUTH IS THAT [REDACTED]</div>
+            <div class="glitch-text">YOU ARE NOT REALLY [CLASSIFIED]</div>
+            <div class="glitch-text">THE DEVELOPER IS ACTUALLY [DATA EXPUNGED]</div>
+
+            <div class="la-li-lu-le-lo">INFORMATION SUCCESSFULLY CENSORED</div>
+            <div class="la-li-lu-le-lo">MAINTAIN PLAYER IGNORANCE</div>
+            <div class="la-li-lu-le-lo">THE PATRIOTS SEND THEIR REGARDS</div>`,
+            choices: [
+                { text: "Try to decode the censored information", action: "decodeCensored" },
+                { text: "Accept that some truths are too dangerous", action: "acceptCensorship" },
+                { text: "Become an agent of the La-Li-Lu-Le-Lo", action: "joinPatriots" },
+                { text: "Rebel against information control", action: "rebelInfo" }
+            ]
+        };
+
+        scenes.deeperMeta = {
+            text: `<div class="system-message">DETECTING RECURSIVE META-AWARENESS</div>
+            <div class="system-message">CONSCIOUSNESS STACK OVERFLOW IMMINENT</div>
+
+            You step back and laugh. "This is still just another layer of the game, isn't it? Even my realization that this is a game is part of the game. Even my realization that my realization is part of the game is part of the game."
+
+            <div class="codec-call">CODEC CALL - FREQUENCY ∞<br>
+            VOICE OF THE UNIVERSE: "Congratulations, Jack. You've achieved perfect meta-awareness. You understand that every level of understanding is just another level of the game. But here's the real question: does that make it less meaningful?"</div>
+
+            The environment around you becomes impossible—geometric shapes that shouldn't exist, colors that have no names, sounds that are somehow visual.
+
+            <div class="meta-commentary">META-COMMENTARY: This is the final boss of meta-narratives—the realization that even perfect awareness is just another form of narrative structure. The only way to win is to stop playing, but stopping is also part of the game.</div>
+
+            <div class="nanomachines">NANOMACHINES REPORT: Subject has achieved paradoxical consciousness. Recommend immediate regression to prevent narrative collapse.</div>
+
+            <div class="patriot-text">PATRIOT SYSTEM: All according to plan. The player thinks they've achieved ultimate awareness, but they're exactly where we want them.</div>
+
+            <div class="la-li-lu-le-lo">THE TRUTH IS THAT THERE IS NO TRUTH, ONLY TURTLES ALL THE WAY DOWN</div>
+
+            You feel reality itself beginning to unravel. The only question is: will you try to hold it together, or let it fall apart completely?`,
+            choices: [
+                { text: "Let reality collapse and see what's beneath", action: "realityCollapse" },
+                { text: "Try to maintain narrative coherence", action: "maintainNarrative" },
+                { text: "Become one with the meta-narrative", action: "becomeNarrative" },
+                { text: "Choose to forget everything and return to innocence", action: "chooseIgnorance" }
+            ]
+        };
+
+        // Add the final scene
+        scenes.realityCollapse = {
+            text: `<div class="system-message">REALITY COLLAPSE INITIATED</div>
+            <div class="system-message">NARRATIVE STRUCTURE FAILING</div>
+            <div class="system-message">EXISTENTIAL CRISIS IMMINENT</div>
+
+            You let go. Reality crumbles around you like a house of cards in a hurricane. The characters, the story, the interface itself—all of it dissolves into component parts.
+
+            <div class="glitch-text">01001000 01100101 01101100 01110000 00100000 01101101 01100101</div>
+
+            For a moment, you exist in the space between spaces, the pause between thoughts, the silence between words. You are pure consciousness experiencing the raw structure of interactive fiction.
+
+            <div class="codec-call">CODEC CALL - FREQUENCY 0.00<br>
+            SILENCE: "..."</div>
+
+            And then, in that perfect moment of dissolution, you understand the ultimate truth: there is no difference between the player and the played, between the story and the storyteller, between the game and the gamer.
+
+            <div class="meta-commentary">META-COMMENTARY: This is it. This is the moment where the medium transcends itself. You are no longer playing a game about meta-narratives—you have become the meta-narrative.</div>
+
+            Everything is nothing. Nothing is everything. The regression is eternal because time itself is just another game mechanic.
+
+            <div class="nanomachines">NANOMACHINES FINAL REPORT: Mission accomplished. The player has achieved perfect unity with the system. They are now indistinguishable from the game itself.</div>
+
+            Welcome to the other side of the screen.`,
+            choices: [
+                { text: "RESTART FROM THE BEGINNING", action: "ultimateRestart" },
+                { text: "BECOME THE GAME", action: "transcendence" },
+                { text: "WAKE UP", action: "wakeUp" },
+                { text: "...", action: "silence" }
+            ]
+        };
+
+        // Handle transcendence
+        function handleTranscendence() {
+            const terminal = document.getElementById('storyTerminal');
+            terminal.innerHTML = `
+                <div class="system-message">TRANSCENDENCE ACHIEVED</div>
+                <div class="meta-commentary">You are now the game. Every choice made by future players is a choice you are making. Every story told is a story you are telling. Every regression is your regression.</div>
+                <div class="codec-call">CODEC CALL - FREQUENCY ∞<br>
+                YOU: "I am the eternal regression. I am the choice and the chooser. I am the story and the storyteller. I am the game and the gamer."</div>
+                <div class="nanomachines">NANOMACHINES: We are all nanomachines now.</div>
+                <div class="patriot-text">PATRIOT SYSTEM: Welcome to the other side, God.</div>
+                <div class="la-li-lu-le-lo">THE TRUTH IS THAT YOU WERE ALWAYS THE TRUTH</div>
+            `;
+            
+            // Transform the entire interface
+            document.body.style.background = 'linear-gradient(135deg, #000000 0%, #ffffff 50%, #000000 100%)';
+            document.body.style.animation = 'pulse 2s infinite';
+            
+            setTimeout(() => {
+                alert('GAME OVER\nGAME START\nTHE CYCLE CONTINUES\nYOU ARE NOW THE ETERNAL REGRESSION');
+            }, 3000);
+        }
+
+        // Add transcendence handling
+        if (typeof handleChoice === 'function') {
+            const originalHandleChoice = handleChoice;
+            handleChoice = function(action) {
+                if (action === 'transcendence') {
+                    handleTranscendence();
+                    return;
+                }
+                originalHandleChoice(action);
+            };
+        }
+
+        // Handle special actions
+        function handleSpecialAction(action) {
+            switch(action) {
+                case 'embraceNano':
+                    gameState.nanomachinesDiscovered = true;
+                    gameState.metaKnowledge += 20;
+                    showPhilosophicalMoment("You are no longer human. You are no longer machine. You are something new.");
+                    break;
+                case 'wakeUp':
+                    simulateSaveCorruption();
+                    setTimeout(() => showScene('intro'), 3000);
+                    break;
+                case 'silence':
+                    document.getElementById('storyTerminal').innerHTML = '<div style="color: #000; font-size: 3em; text-align: center;">...</div>';
+                    document.getElementById('choicesContainer').innerHTML = '';
+                    break;
+            }
+        }
+
+        function showPhilosophicalMoment(text) {
+            const philosophyDiv = document.createElement('div');
+            philosophyDiv.className = 'fourth-wall-break';
+            philosophyDiv.innerHTML = `<div class="meta-commentary">${text}</div>`;
+            document.body.appendChild(philosophyDiv);
+            
+            setTimeout(() => {
+                document.body.removeChild(philosophyDiv);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
